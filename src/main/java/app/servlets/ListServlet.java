@@ -1,6 +1,6 @@
 package app.servlets;
 
-import app.model.Model;
+import app.db.DataBase;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Model model = Model.getInstance();
+        DataBase model = DataBase.getInstance();
         List<String> names = model.list();
         req.setAttribute("userNames", names);
 

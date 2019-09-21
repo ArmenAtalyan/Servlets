@@ -1,5 +1,8 @@
 package app.servlets;
 
+import app.entities.User;
+import app.db.DataBase;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +19,13 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String name = req.getParameter("name");
+        String password = req.getParameter("pass");
+
+        User user = new User(name, password);
+        DataBase db = DataBase.getInstance();
+        db.delete(user);
+
+        req.setAttribute("userName", name);
     }
 }
